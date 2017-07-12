@@ -9,6 +9,10 @@ export interface SSBMunicipality {
   validTo: string
 }
 
+/**
+ * SSB Municipality data
+ * source: https://data.norge.no/data/statistisk-sentralbyrå/kommuneinndeling
+ */
 export default [
   {
     code: 101,

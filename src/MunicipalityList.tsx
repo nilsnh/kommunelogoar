@@ -1,6 +1,6 @@
 import * as React from 'react'
-import ssbMunicipalities from './ssb-2017-municipality-data'
-import { SSBMunicipality } from './ssb-2017-municipality-data'
+import ssbMunicipalities from './municipality-data-ssb'
+import { SSBMunicipality } from './municipality-data-ssb'
 import { MunicipalityCard } from './MunicipalityCard'
 
 export default class MunicipalityList extends React.Component<any, any> {
@@ -39,6 +39,12 @@ export default class MunicipalityList extends React.Component<any, any> {
               onChange={e => this.onChangeHandler(e)}
               placeholder="Namn, kommunenr e.l."
             />
+          </label>
+        </div>
+        <div className="u-padding-bottom">
+          <label>
+            Vis kun de med logo tilgjengelig:
+            <input type="checkbox" />
           </label>
         </div>
         {municipalities.map((elem: SSBMunicipality) =>
