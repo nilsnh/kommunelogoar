@@ -1,17 +1,7 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
 import ssbMunicipalities from './ssb-2017-municipality-data'
 import { SSBMunicipality } from './ssb-2017-municipality-data'
-
-const MunicipalityCard: React.SFC<any> = ({ muni }: any) => {
-  return (
-    <div>
-      <Link to={`/kommune/${muni.code}`}>
-        {muni.name}
-      </Link>
-    </div>
-  )
-}
+import { MunicipalityCard } from './MunicipalityCard'
 
 export default class MunicipalityList extends React.Component<any, any> {
   constructor() {
@@ -42,14 +32,15 @@ export default class MunicipalityList extends React.Component<any, any> {
     }
     return (
       <div>
-        <label>
-          Filtrer kommunar:
-          <input
-            onChange={e => this.onChangeHandler(e)}
-            placeholder="Namn, kommunenr e.l."
-          />
-        </label>
-        <br />
+        <div className="u-padding-bottom">
+          <label>
+            Filtrer kommunar:
+            <input
+              onChange={e => this.onChangeHandler(e)}
+              placeholder="Namn, kommunenr e.l."
+            />
+          </label>
+        </div>
         {municipalities.map((elem: SSBMunicipality) =>
           <MunicipalityCard key={elem.code} muni={elem} />
         )}

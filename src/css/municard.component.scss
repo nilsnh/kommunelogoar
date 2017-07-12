@@ -1,0 +1,10 @@
+.c-municard {
+  padding: $inuit-global-spacing-unit-small;
+  padding-top: 0;
+  display: flex;
+  flex-flow: row wrap;
+
+  .c-municard__item {
+    margin-right: $inuit-global-spacing-unit-small;
+  }
+}
