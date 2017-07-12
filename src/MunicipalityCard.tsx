@@ -1,14 +1,8 @@
 import * as React from 'react'
-import { SSBMunicipality } from './municipality-data-ssb'
-import { LinkResource } from './municipality-data-resources'
-
-interface Muni extends SSBMunicipality {
-  homepageUrl?: string
-  resources?: Array<LinkResource>
-}
+import { Municipality } from './data/index'
 
 interface MunicipalityCardProps {
-  muni: Muni
+  muni: Municipality
 }
 
 export const MunicipalityCard: React.SFC<MunicipalityCardProps> = ({
@@ -29,6 +23,22 @@ export const MunicipalityCard: React.SFC<MunicipalityCardProps> = ({
     )
   }
 
+  const LogoLinks = () =>
+    muni.orgnummer
+      ? <div>
+          <span className="u-padding-right-small">Logoar:</span>
+          {[50, 100, 150, 200, 250, 'org'].map(size =>
+            <a
+              key={size}
+              href={`http://orglogo.difi.no/api/logo/${size}/${muni.orgnummer}`}
+              className="u-padding-right-small"
+            >
+              {size}
+            </a>
+          )}
+        </div>
+      : null
+
   return (
     <article className="c-municard">
       <div className="c-municard__item">
@@ -37,14 +47,9 @@ export const MunicipalityCard: React.SFC<MunicipalityCardProps> = ({
       <div className="c-municard__item">
         {muni.code}
       </div>
-      {muni.resources &&
-        muni.resources.map(elem =>
-          <div className="c-municard__item">
-            <a href={elem.url}>
-              {elem.name}
-            </a>
-          </div>
-        )}
+      <div className="c-municard__item">
+        <LogoLinks />
+      </div>
     </article>
   )
 }

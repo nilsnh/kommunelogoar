@@ -13,7 +13,7 @@ export interface SSBMunicipality {
  * SSB Municipality data
  * source: https://data.norge.no/data/statistisk-sentralbyrå/kommuneinndeling
  */
-export default [
+export const SSBMunicipalities: SSBMunicipality[] = [
   {
     code: 101,
     parentCode: '',

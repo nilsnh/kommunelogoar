@@ -494,6 +494,6 @@ const rawdata = [
   }
 ]
 
-export default rawdata.filter(
-  elem => elem.title.toLowerCase().indexOf('kommune') !== -1
+export const DifiMunicipalities = rawdata.filter(
+  elem => elem.title.toLowerCase().indexOf(' kommune') !== -1
 )

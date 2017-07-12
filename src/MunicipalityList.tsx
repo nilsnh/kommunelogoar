@@ -1,13 +1,9 @@
 import * as React from 'react'
-import ssbMunicipalities from './municipality-data-ssb'
-import { SSBMunicipality } from './municipality-data-ssb'
-import { MunicipalityResources } from './municipality-data-resources'
+import {
+  municipalities as municipalitiesData,
+  Municipality
+} from './data/index'
 import { MunicipalityCard } from './MunicipalityCard'
-
-interface Municipality extends SSBMunicipality {
-  homepageUrl?: string
-  resources?: Array<any>
-}
 
 interface State {
   filterText: string
@@ -24,14 +20,14 @@ export default class MunicipalityList extends React.Component<any, State> {
   }
 
   render() {
-    const shouldShow = (filterText: string, muni: SSBMunicipality) =>
+    const shouldShow = (filterText: string, muni: Municipality) =>
       JSON.stringify(muni.name)
         .toLowerCase()
         .indexOf(filterText.toLowerCase()) !== -1
-    const hasResources = (muni: Municipality) => !!muni.resources
+    const hasLogo = (muni: Municipality) => !!muni.orgnummer
 
     // copy array and sort by name
-    let municipalities = ssbMunicipalities
+    let municipalities = municipalitiesData
       .slice()
       .sort((a, b) => {
         if (a.name < b.name) {
@@ -46,10 +42,7 @@ export default class MunicipalityList extends React.Component<any, State> {
         if (this.state.filterText && !shouldShow(this.state.filterText, elem)) {
           return acc
         }
-        if (MunicipalityResources[elem.code]) {
-          Object.assign(elem, MunicipalityResources[elem.code])
-        }
-        if (this.state.filterByResource && !hasResources(elem)) {
+        if (this.state.filterByResource && !hasLogo(elem)) {
           return acc
         }
         acc.push(elem)
@@ -79,7 +72,7 @@ export default class MunicipalityList extends React.Component<any, State> {
         <div className="u-padding-bottom">
           Antall: {municipalities.length}
         </div>
-        {municipalities.map((elem: SSBMunicipality) =>
+        {municipalities.map(elem =>
           <MunicipalityCard key={elem.code} muni={elem} />
         )}
       </div>

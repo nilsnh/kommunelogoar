@@ -5,4 +5,7 @@
   .c-municard__item {
     margin-right: $inuit-global-spacing-unit-small;
   }
+  .c-municard__item--logos {
+    flex-basis: 100%;
+  }
 }
