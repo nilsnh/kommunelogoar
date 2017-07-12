@@ -1,9 +1,7 @@
 .c-municard {
-  padding: $inuit-global-spacing-unit-small;
-  padding-top: 0;
+  padding-bottom: $inuit-global-spacing-unit-small;
   display: flex;
   flex-flow: row wrap;
-
   .c-municard__item {
     margin-right: $inuit-global-spacing-unit-small;
   }

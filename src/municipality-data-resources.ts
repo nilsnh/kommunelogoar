@@ -1,13 +1,18 @@
-interface MunicipalityResource {
-  code: number // muni number
-  homepageUrl: string
-  resources: Array<any>
+export interface LinkResource {
+  name: string
+  url: string
 }
 
-export const MunicipalityResources: MunicipalityResource[] = [
-  {
-    code: 1622,
+export interface EnrichResource {
+  [key: number]: {
+    homepageUrl: string
+    resources: Array<LinkResource>
+  }
+}
+
+export const MunicipalityResources: EnrichResource = {
+  1622: {
     homepageUrl: 'https://www.agdenes.kommune.no',
     resources: []
   }
-]
+}
