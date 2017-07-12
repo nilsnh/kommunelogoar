@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import ssbMunicipalities from './ssb-2017-municipality-data'
 
-// eslint-disable-next-line
 export default ({ match }: any) => {
   const matchingMunicipality = ssbMunicipalities.filter(
     elem => elem.code === Number.parseInt(match.params.code)
