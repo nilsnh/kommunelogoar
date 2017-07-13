@@ -72,9 +72,16 @@ export default class MunicipalityList extends React.Component<any, State> {
         <div className="u-padding-bottom">
           Antall: {municipalities.length}
         </div>
-        {municipalities.map(elem =>
-          <MunicipalityCard key={elem.code} muni={elem} />
-        )}
+        <div className="o-layout">
+          {municipalities.map(elem =>
+            <div
+              key={elem.code}
+              className="o-layout__item u-1/1 u-1/3@tablet u-1/10@desktop"
+            >
+              <MunicipalityCard muni={elem} />
+            </div>
+          )}
+        </div>
       </div>
     )
   }
