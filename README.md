@@ -1,4 +1,4 @@
-# Kommunelogoar
+# Kommunelogo
 
 Eit lite webprogram for å gjere det lettare å finne frem til kommunelogoar.
 
