@@ -1,5 +1,4 @@
-import { municipalities, Municipality } from './data/index'
-import * as fs from 'fs'
+import { municipalities } from './data/index'
 
 const apiData = municipalities.map(muni => {
   const { name, code, homepageUrl, orgnummer, resources, logos } = muni
