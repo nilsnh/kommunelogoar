@@ -2,7 +2,7 @@
   "name": "kommunelogo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nilsnh.github.io/kommunelogo",
+  "homepage": "https://kommunelogo.nilsnh.no/",
   "dependencies": {
     "@types/jest": "^20.0.2",
     "@types/node": "^8.0.10",
