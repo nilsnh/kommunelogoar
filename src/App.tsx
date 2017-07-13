@@ -14,9 +14,12 @@ export default () =>
       </p>
       <p>
         I botn ligg det bla. kommunedata i frå
-        [SSB](https://data.norge.no/data/statistisk-sentralbyrå/kommuneinndeling)
-        og [Difi](https://orglogo.difi.no/api). Meir info om prosjektet [finn du
-        her](https://github.com/nilsnh/kommunelogo).
+        <a href="https://data.norge.no/data/statistisk-sentralbyrå/kommuneinndeling">
+          SSB
+        </a>
+        og <a href="https://orglogo.difi.no/api">Difi</a>. Meir info om
+        prosjektet{' '}
+        <a href="https://github.com/nilsnh/kommunelogo">finn du her</a>.
       </p>
     </div>
     <MunicipalityList />
