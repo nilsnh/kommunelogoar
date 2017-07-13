@@ -26,7 +26,8 @@ export const municipalities: Municipality[] = SSBMunicipalities.reduce(
 function getDifiData(muni: Municipality) {
   let result = {}
   DifiMunicipalities.map(difiMuni => {
-    if (difiMuni.title.toLowerCase().indexOf(muni.name.toLowerCase()) !== -1) {
+    const trimmedTitle = difiMuni.title.replace(/kommune/gi, '').trim()
+    if (trimmedTitle.toLowerCase() === muni.name.toLowerCase()) {
       result = difiMuni
     }
   })
