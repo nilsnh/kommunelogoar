@@ -1,6 +1,8 @@
 {
-  "main.css": "static/css/main.c644c014.css",
-  "main.css.map": "static/css/main.c644c014.css.map",
+  "main.css": "static/css/main.a167789f.css",
+  "main.css.map": "static/css/main.a167789f.css.map",
   "main.js": "static/js/main.4b43808f.js",
-  "main.js.map": "static/js/main.4b43808f.js.map"
+  "main.js.map": "static/js/main.4b43808f.js.map",
+  "static/media/Cabin-Regular.ttf": "static/media/Cabin-Regular.b308848b.ttf",
+  "static/media/DroidSans.ttf": "static/media/DroidSans.d8c76423.ttf"
 }
