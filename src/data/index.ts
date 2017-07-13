@@ -9,6 +9,10 @@ export interface Municipality extends SSBMunicipality {
   title: string
   orgnummer: string
   homepageUrl?: string
+  logos?: Array<{
+    size: string
+    url: string
+  }>
   resources?: Array<LinkResource>
 }
 

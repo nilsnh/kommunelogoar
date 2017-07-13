@@ -17,6 +17,10 @@ export default () =>
         prosjektet{' '}
         <a href="https://github.com/nilsnh/kommunelogo">finn du her</a>.
       </p>
+      <p>
+        PS: Denne sida har også eit API som du kan finne{' '}
+        <a href="/api.json">her</a>.
+      </p>
     </div>
     <MunicipalityList />
   </main>

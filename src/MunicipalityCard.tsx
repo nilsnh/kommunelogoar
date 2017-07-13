@@ -26,19 +26,15 @@ export const MunicipalityCard: React.SFC<MunicipalityCardProps> = ({
   }
 
   const LogoLinks = () =>
-    muni.orgnummer
+    muni.logos
       ? <ul className="o-list-inline">
           <li className="o-list-inline__item">
             <span className="u-padding-right-small">Logoar:</span>
           </li>
-          {[50, 100, 150, 200, 250, 'org'].map(size =>
-            <li key={size} className="o-list-inline__item">
-              <a
-                href={`http://orglogo.difi.no/api/logo/${size}/${muni.orgnummer}`}
-                className="u-padding-right-small"
-              >
-                {size === 'org' && 'original'}
-                {size !== 'org' && `${size}px`}
+          {muni.logos.map(logo =>
+            <li key={logo.size} className="o-list-inline__item">
+              <a href={logo.url} className="u-padding-right-small">
+                {logo.size}
               </a>
             </li>
           )}

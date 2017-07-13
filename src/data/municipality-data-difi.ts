@@ -494,6 +494,32 @@ const rawdata = [
   }
 ]
 
-export const DifiMunicipalities = rawdata.filter(
-  elem => elem.title.toLowerCase().indexOf(' kommune') !== -1
-)
+interface DifiMunicipality {
+  title: string
+  orgnummer: string
+  logos: Array<{
+    size: string
+    url: string
+  }>
+}
+
+export const DifiMunicipalities = rawdata.reduce((acc, elem) => {
+  if (elem.title.toLowerCase().indexOf(' kommune') !== -1) {
+    acc.push(
+      Object.assign(elem, {
+        logos: buildLogoData(elem)
+      })
+    )
+  }
+  return acc
+}, [] as Array<DifiMunicipality>)
+
+function buildLogoData(muni: any) {
+  if (!muni.orgnummer) {
+    return []
+  }
+  return [50, 100, 150, 200, 250, 'org'].map(size => ({
+    size: size === 'org' ? 'original' : `${size}px`,
+    url: `http://orglogo.difi.no/api/logo/${size}/${muni.orgnummer}`
+  }))
+}

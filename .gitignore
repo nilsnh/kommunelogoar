@@ -10,6 +10,8 @@
 /build
 
 *.css
+apiBuild/
+src/api.js
 
 # misc
 .DS_Store
