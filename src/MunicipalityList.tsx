@@ -67,7 +67,7 @@ export default class MunicipalityList extends React.Component<any, State> {
         </div>
         <div className="u-padding-bottom">
           <label>
-            Vis kun de med logo tilgjengelig:
+            Vis kun dei med logo tilgjengelig:
             <input
               type="checkbox"
               onChange={e => this.resourceFilterHandler(e)}
