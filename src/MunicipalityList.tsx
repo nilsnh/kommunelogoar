@@ -113,17 +113,13 @@ export default class MunicipalityList extends React.Component<any, State> {
     this.doTimedUpdate('resourceFilterHandler', updateValue, 100)
   }
 
-  doTimedUpdate(
-    timerKey: string,
-    updateValue: any,
-    waitForMilliseconds: number
-  ) {
+  doTimedUpdate(timerKey: string, newState: any, waitForMilliseconds: number) {
     this.clearTimeoutFor(timerKey)
     this.timedActions[timerKey] = setTimeout(() => {
       this.setState(
-        prevState => updateValue,
+        prevState => newState,
         () => {
-          this.persistToQueryParam(updateValue)
+          this.persistToQueryParam(newState)
           this.clearTimeoutFor(timerKey)
         }
       )
@@ -140,10 +136,10 @@ export default class MunicipalityList extends React.Component<any, State> {
   /**
    * Persist state to url. Remove state from url if values are falsy
    */
-  persistToQueryParam(updateValue: any) {
+  persistToQueryParam(newState: State) {
     const newQueryParams = Object.assign(
       queryString.parse(window.location.hash),
-      updateValue
+      newState
     )
     if (
       (newQueryParams.filterByResource === 'false' ||
