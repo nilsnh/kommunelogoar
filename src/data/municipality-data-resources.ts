@@ -4,15 +4,14 @@ export interface LinkResource {
 }
 
 export interface EnrichResource {
+  // key should be municipality number
   [key: number]: {
     homepageUrl: string
-    resources: Array<LinkResource>
+    resources?: Array<LinkResource>
   }
 }
 
-export const MunicipalityResources: EnrichResource = {
-  1622: {
-    homepageUrl: 'https://www.agdenes.kommune.no',
-    resources: []
-  }
-}
+/**
+ * This is where we can add additional resources to the MunicipalityCards
+ */
+export const MunicipalityResources: EnrichResource = {}
