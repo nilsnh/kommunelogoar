@@ -19,7 +19,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "build:api": "tsc --outDir apiBuild/ src/api.ts && node apiBuild/api.js > build/api.json",
+    "build:api": "tsc --target es5 --lib es6,dom --outDir apiBuild/ src/api.ts && node apiBuild/api.js > build/api.json",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts-ts start",
