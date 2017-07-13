@@ -11,6 +11,11 @@ interface State {
 }
 
 export default class MunicipalityList extends React.Component<any, State> {
+  // track pending state updates, see usage below
+  timedActions: {
+    [key: string]: any // id of setTimeout
+  } = {}
+
   constructor() {
     super()
     this.state = {
@@ -88,15 +93,36 @@ export default class MunicipalityList extends React.Component<any, State> {
 
   searchHandler(e: React.FormEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement
-    this.setState(prevState => ({
-      filterText: input.value
-    }))
+    const updateValue = { filterText: input.value }
+    this.doTimedUpdate('searchHandler', updateValue, 100)
   }
 
   resourceFilterHandler(e: React.FormEvent<HTMLInputElement>) {
     const input = e.target as HTMLInputElement
-    this.setState(prevState => ({
+    const updateValue = {
       filterByResource: input.checked
-    }))
+    }
+    this.doTimedUpdate('resourceFilterHandler', updateValue, 100)
+  }
+
+  doTimedUpdate(
+    timerKey: string,
+    updateValue: any,
+    waitForMilliseconds: number
+  ) {
+    this.clearTimeoutFor(timerKey)
+    this.timedActions[timerKey] = setTimeout(() => {
+      this.setState(
+        prevState => updateValue,
+        () => this.clearTimeoutFor(timerKey)
+      )
+    }, waitForMilliseconds)
+  }
+
+  clearTimeoutFor(key: string) {
+    const timedActionId = this.timedActions[key]
+    if (timedActionId) {
+      window.clearTimeout(timedActionId)
+    }
   }
 }
