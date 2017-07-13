@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as queryString from 'query-string'
 import {
   municipalities as municipalitiesData,
   Municipality
@@ -18,10 +19,15 @@ export default class MunicipalityList extends React.Component<any, State> {
 
   constructor() {
     super()
-    this.state = {
+    const stateTemplate = {
       filterText: '',
       filterByResource: false
     }
+    this.state = Object.assign(
+      stateTemplate,
+      // parse url to see if state has been persisted there
+      queryString.parse(window.location.hash)
+    )
   }
 
   render() {
@@ -61,6 +67,7 @@ export default class MunicipalityList extends React.Component<any, State> {
             Filtrer kommunar:
             <input
               onChange={e => this.searchHandler(e)}
+              defaultValue={this.state.filterText}
               placeholder="Namn, kommunenr e.l."
             />
           </label>
@@ -70,6 +77,7 @@ export default class MunicipalityList extends React.Component<any, State> {
             Vis kun dei med logo tilgjengelig:
             <input
               type="checkbox"
+              defaultChecked={this.state.filterByResource}
               onChange={e => this.resourceFilterHandler(e)}
             />
           </label>
@@ -114,7 +122,10 @@ export default class MunicipalityList extends React.Component<any, State> {
     this.timedActions[timerKey] = setTimeout(() => {
       this.setState(
         prevState => updateValue,
-        () => this.clearTimeoutFor(timerKey)
+        () => {
+          this.persistToQueryParam(updateValue)
+          this.clearTimeoutFor(timerKey)
+        }
       )
     }, waitForMilliseconds)
   }
@@ -123,6 +134,31 @@ export default class MunicipalityList extends React.Component<any, State> {
     const timedActionId = this.timedActions[key]
     if (timedActionId) {
       window.clearTimeout(timedActionId)
+    }
+  }
+
+  /**
+   * Persist state to url. Remove state from url if values are falsy
+   */
+  persistToQueryParam(updateValue: any) {
+    const newQueryParams = Object.assign(
+      queryString.parse(window.location.hash),
+      updateValue
+    )
+    if (
+      (newQueryParams.filterByResource === 'false' ||
+        !newQueryParams.filterByResource) &&
+      !newQueryParams.filterText
+    ) {
+      // hack to forget #hash
+      // source: https://stackoverflow.com/a/5298684
+      history.pushState(
+        '',
+        document.title,
+        window.location.pathname + window.location.search
+      )
+    } else {
+      window.location.hash = queryString.stringify(newQueryParams)
     }
   }
 }
