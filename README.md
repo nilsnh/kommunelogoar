@@ -2,7 +2,7 @@
 
 Eit lite webprogram for å gjere det lettare å finne frem til kommunelogoar.
 
-Prosjektet er byggd med [Create React App (Typescript)](https://github.com/wmonk/create-react-app-typescript).
+Prosjektet er byggd med [Create React App (Typescript)](https://github.com/wmonk/create-react-app-typescript), som er ein avlegger av [dette prosjektet](https://github.com/facebookincubator/create-react-app).
 
 Datakjelder i botn:
 
