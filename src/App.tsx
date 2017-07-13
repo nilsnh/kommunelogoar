@@ -15,12 +15,11 @@ export default () =>
       <p>
         I botn ligg det bla. kommunedata i frå SSB og Difi. Meir info om
         prosjektet{' '}
-        <a href="https://github.com/nilsnh/kommunelogo">finn du her</a>.
+        <a href="https://github.com/nilsnh/kommunelogo">finn du her</a>. Om du
+        vil bygge vidare på rådataene så finst det eit API{' '}
+        <a href="/api.json">her</a>. :)
       </p>
-      <p>
-        PS: Denne sida har også eit API som du kan finne{' '}
-        <a href="/api.json">her</a>.
-      </p>
+      <p />
     </div>
     <MunicipalityList />
   </main>
