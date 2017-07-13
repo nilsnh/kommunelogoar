@@ -10,4 +10,4 @@ Datakjelder i botn:
 - [Difi logokjelde](https://orglogo.difi.no/api).
 - Pluss litt ["himkokt" data](https://github.com/nilsnh/kommunelogoar/blob/master/src/data/municipality-data-resources.ts).
 
-Licensed under [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/).
+Lisensiert under [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/).
