@@ -13,11 +13,7 @@ export default () =>
         ned logofiler, visuell profil o.l. for kommuner.
       </p>
       <p>
-        I botn ligg det bla. kommunedata i frå
-        <a href="https://data.norge.no/data/statistisk-sentralbyrå/kommuneinndeling">
-          SSB
-        </a>
-        og <a href="https://orglogo.difi.no/api">Difi</a>. Meir info om
+        I botn ligg det bla. kommunedata i frå SSB og Difi. Meir info om
         prosjektet{' '}
         <a href="https://github.com/nilsnh/kommunelogo">finn du her</a>.
       </p>
