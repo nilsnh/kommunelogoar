@@ -23,12 +23,12 @@ html {
 
 @font-face {
   font-family: 'Cabin Regular';
-  src: url('/cabin/Cabin-Regular.ttf') format('truetype');
+  src: url('./cabin/Cabin-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'DroidSans Regular';
-  src: url('/droidsans/DroidSans.ttf') format('truetype');
+  src: url('./droidsans/DroidSans.ttf') format('truetype');
 }
 
 body {
