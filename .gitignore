@@ -12,6 +12,7 @@
 *.css
 apiBuild/
 src/api.js
+public/api.json
 
 # misc
 .DS_Store
