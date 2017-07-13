@@ -75,7 +75,7 @@
  */
 
 // SETTINGS
-@import "node_modules/inuitcss/settings/settings.core";
+@import "settings";
 $inuit-fractions: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
 
 // TOOLS
@@ -91,8 +91,8 @@ $inuit-fractions: 1 2 3 4 5 6 7 8 9 10 11 12 !default;
 @import "node_modules/inuitcss/generic/generic.shared";
 
 // ELEMENTS
-@import "node_modules/inuitcss/elements/elements.page";
-@import "node_modules/inuitcss/elements/elements.headings";
+@import "elements.page";
+@import "elements.headings";
 @import "node_modules/inuitcss/elements/elements.images";
 @import "node_modules/inuitcss/elements/elements.tables";
 

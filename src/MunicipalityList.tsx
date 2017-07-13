@@ -81,7 +81,7 @@ export default class MunicipalityList extends React.Component<any, State> {
           {municipalities.map(elem =>
             <div
               key={elem.code}
-              className="o-layout__item u-1/1 u-1/3@tablet u-1/10@desktop"
+              className="o-layout__item u-1/1 u-1/3@tablet u-1/6@desktop u-1/10@wide"
             >
               <MunicipalityCard muni={elem} />
             </div>
