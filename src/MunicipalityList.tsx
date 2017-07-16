@@ -1,5 +1,6 @@
 import * as React from 'react'
 import * as queryString from 'query-string'
+import * as Fuse from 'fuse.js'
 import {
   municipalities as municipalitiesData,
   Municipality
@@ -9,6 +10,7 @@ import { MunicipalityCard } from './MunicipalityCard'
 interface State {
   filterText: string
   filterByResource: boolean
+  municipalities: any
 }
 
 export default class MunicipalityList extends React.Component<any, State> {
@@ -21,44 +23,47 @@ export default class MunicipalityList extends React.Component<any, State> {
     super()
     const stateTemplate = {
       filterText: '',
-      filterByResource: false
+      filterByResource: false,
     }
     this.state = Object.assign(
       stateTemplate,
       // parse url to see if state has been persisted there
-      queryString.parse(window.location.hash)
+      queryString.parse(window.location.hash),
+      {
+        municipalities: new Fuse(municipalitiesData, {
+          keys: ['name'],
+          minMatchCharLength: 1,
+          threshold: 0.5,
+          location: 0,
+          distance: 10,
+          shouldSort: true,
+          tokenize: true,
+          matchAllTokens: true,
+        })
+      }
     )
   }
 
   render() {
-    const shouldShow = (filterText: string, muni: Municipality) =>
-      JSON.stringify(muni.name)
-        .toLowerCase()
-        .indexOf(filterText.toLowerCase()) !== -1
     const hasLogo = (muni: Municipality) => !!muni.orgnummer
 
     // copy array and sort by name
-    let municipalities = municipalitiesData
+    let municipalities = this.state.filterText.length > 0 ?
+      this.state.municipalities.search(this.state.filterText) :
+      municipalitiesData
+
+      municipalities = municipalities
       .slice()
-      .sort((a, b) => {
-        if (a.name < b.name) {
-          return -1
-        }
-        if (a.name > b.name) {
-          return 1
-        }
-        return 0
-      })
-      .reduce((acc, elem: Municipality) => {
-        if (this.state.filterText && !shouldShow(this.state.filterText, elem)) {
-          return acc
-        }
+      .reduce((acc: Array<Municipality>, elem: Municipality) => {
         if (this.state.filterByResource && !hasLogo(elem)) {
           return acc
         }
         acc.push(elem)
         return acc
       }, [] as Municipality[])
+      .sort((municipalityA: Municipality, municipalityB: Municipality) => {
+        return municipalityA.name.localeCompare(municipalityB.name)
+      })
 
     return (
       <div>
@@ -86,7 +91,7 @@ export default class MunicipalityList extends React.Component<any, State> {
           Antall: {municipalities.length}
         </div>
         <div className="o-layout">
-          {municipalities.map(elem =>
+          {municipalities.map((elem: Municipality) =>
             <div
               key={elem.code}
               className="o-layout__item u-1/1 u-1/3@tablet u-1/6@desktop u-1/10@wide"
