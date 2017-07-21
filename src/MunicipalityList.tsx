@@ -23,7 +23,7 @@ export default class MunicipalityList extends React.Component<any, State> {
     super()
     const stateTemplate = {
       filterText: '',
-      filterByResource: false,
+      filterByResource: false
     }
     this.state = Object.assign(
       stateTemplate,
@@ -38,7 +38,7 @@ export default class MunicipalityList extends React.Component<any, State> {
           distance: 10,
           shouldSort: true,
           tokenize: true,
-          matchAllTokens: true,
+          matchAllTokens: true
         })
       }
     )
@@ -48,11 +48,12 @@ export default class MunicipalityList extends React.Component<any, State> {
     const hasLogo = (muni: Municipality) => !!muni.orgnummer
 
     // copy array and sort by name
-    let municipalities = this.state.filterText.length > 0 ?
-      this.state.municipalities.search(this.state.filterText) :
-      municipalitiesData
+    let municipalities =
+      this.state.filterText.length > 0
+        ? this.state.municipalities.search(this.state.filterText)
+        : municipalitiesData
 
-      municipalities = municipalities
+    municipalities = municipalities
       .slice()
       .reduce((acc: Array<Municipality>, elem: Municipality) => {
         if (this.state.filterByResource && !hasLogo(elem)) {
@@ -61,8 +62,14 @@ export default class MunicipalityList extends React.Component<any, State> {
         acc.push(elem)
         return acc
       }, [] as Municipality[])
-      .sort((municipalityA: Municipality, municipalityB: Municipality) => {
-        return municipalityA.name.localeCompare(municipalityB.name)
+      .sort((a: Municipality, b: Municipality) => {
+        if (a.name < b.name) {
+          return -1
+        } else if (a.name > b.name) {
+          return 1
+        } else {
+          return 0
+        }
       })
 
     return (
